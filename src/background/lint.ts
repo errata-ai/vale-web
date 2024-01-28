@@ -2,9 +2,46 @@ import jsyaml from "js-yaml"
 import browser from "webextension-polyfill"
 import { defaultSettings, ExtSettings } from "./settings"
 
+/*
+On startup, connect to Vale's native messaging host.
+*/
+var port = browser.runtime.connectNative("sh.vale.native")
+
+port.onMessage.addListener(function (msg) {
+  const payload = JSON.parse(msg.data)
+  if (msg.command === "lint") {
+    showResults(payload)
+  }
+})
+
+port.onDisconnect.addListener(function () {
+  console.log("Disconnected")
+})
+
+function showResults(payload: any) {
+  const keys = Object.keys(payload)
+  if (keys.length === 0) {
+    browser.runtime.sendMessage({
+      action: "analysis_complete",
+      alerts: [],
+      status: '<span class="p-2">✅</span>No alerts found!',
+    });
+  } else {
+    browser.runtime.sendMessage({
+      action: "analysis_complete",
+      alerts: payload[keys[0]],
+    });
+  }
+}
+
 function postVale(request: any, settings: ExtSettings, target: string) {
   const ext = settings.sites[target] || ".txt"
   console.log("Linting text as", ext, request)
+  port.postMessage({
+    command: "lint",
+    text: request.text,
+    format: ext,
+  })
 }
 
 function postHTML(request: any, settings: ExtSettings): void {
@@ -15,7 +52,6 @@ function postHTML(request: any, settings: ExtSettings): void {
 function doLint(target, resp) {
   browser.storage.local.get("config").then(function (items) {
     var settings = defaultSettings
-    console.log("LOADED", items)
     if (items.config) {
       console.log("Loading saved config ...")
       settings = jsyaml.load(items.config) as ExtSettings

@@ -13,6 +13,7 @@
 
     browser.runtime.onMessage.addListener(function (request) {
       if (request.action === "analysis_complete") {
+        console.log(request)
         status = "complete"
       }
     })
