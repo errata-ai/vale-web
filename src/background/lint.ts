@@ -1,31 +1,24 @@
 import jsyaml from "js-yaml"
 import browser from "webextension-polyfill"
+import { defaultSettings, ExtSettings } from "./settings"
 
-const defaultSettings = {
-  server: "http://localhost:7777",
-  sites: {
-    "github.com": ".md",
-    "reddit.com": ".md"
-  }
-}
-
-function postVale(request: any, settings: { sites?: any }, target: string) {
+function postVale(request: any, settings: ExtSettings, target: string) {
   const ext = settings.sites[target] || ".txt"
   console.log("Linting text as", ext, request)
 }
 
-function postHTML(request, settings): void {
+function postHTML(request: any, settings: ExtSettings): void {
   console.log("Linting HTML", request)
   //port.postMessage({ command: "ls-config" })
 }
 
 function doLint(target, resp) {
-  console.log("Target", target)
   browser.storage.local.get("config").then(function (items) {
     var settings = defaultSettings
+    console.log("LOADED", items)
     if (items.config) {
       console.log("Loading saved config ...")
-      settings = jsyaml.load(items.config)
+      settings = jsyaml.load(items.config) as ExtSettings
     }
     if (resp.text) {
       postVale(resp, settings, target)
