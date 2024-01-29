@@ -32,9 +32,18 @@ export default function sourceFinder(): {
   }
 
   if (target instanceof HTMLElement && isSupported(target)) {
+    var text = target.innerText || "";
+    var html = "";
+
+    if (text === "" || text === undefined) {
+      text = toText(target);
+      html = target.outerHTML;
+    }
+
     return {
-      text: toText(target),
-      markup: target.outerHTML,
+      text: text,
+      // TODO: Add support for markup?
+      markup: "",
       id: target.id || target.className
     }
   }

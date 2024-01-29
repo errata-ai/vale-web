@@ -22,6 +22,7 @@ browser.runtime.onMessage.addListener(function (request) {
             func: sourceFinder
           })
           .then((result) => {
+            console.log("Found source", result[0].result)
             lintElement(result[0].result)
           })
       })

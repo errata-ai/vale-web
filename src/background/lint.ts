@@ -58,10 +58,11 @@ function doLint(target, resp) {
       console.log("Loading saved config ...")
       settings = jsyaml.load(items.config) as ExtSettings
     }
-    if (resp.text) {
-      postVale(resp, settings, target)
-    } else {
+    console.log("Loaded settings", resp)
+    if (resp.markup) {
       postHTML(resp, settings)
+    } else {
+      postVale(resp, settings, target)
     }
   })
 }
