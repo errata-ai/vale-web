@@ -4,7 +4,7 @@
   import SvelteTable from "svelte-table/src/SvelteTable.svelte"
   import browser from "webextension-polyfill"
 
-  import { type AlertRow, detailFormatter, spanFormatter } from "./alert"
+  import { detailFormatter, spanFormatter, type AlertRow } from "./alert"
 
   import "../style.css"
 

@@ -37,15 +37,15 @@ export function detailFormatter(extracted: string, row: ValeAlert): string {
 
   var match = text.slice(span[0] - 1, span[1])
   html.push(
-    '<p class="p-3 text-neutral-500">' +
-      text.slice(0, span[0] - 1) +
-      '<span class="' +
-      textClass +
-      '"><i>' +
-      match +
-      "</i></span>" +
-      text.slice(span[1]) +
-      "</p>"
+    '<p class="text-neutral-400">' +
+    text.slice(0, span[0] - 1) +
+    '<span class="' +
+    textClass +
+    '"><i>' +
+    match +
+    "</i></span>" +
+    text.slice(span[1]) +
+    "</p>"
   )
 
   return html.join("")
