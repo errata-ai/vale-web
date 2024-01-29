@@ -56,16 +56,16 @@
     <div class="relative flex-grow flex-1">
       <div
         class="relative flex flex-col min-w-0 rounded break-words border dark:border-gray-800">
-        <div class="py-3 px-3 mb-0">
+        <div class="py-2 px-2 mb-0 border-b dark:border-gray-800">
           <strong>Vale</strong>
           <small>for the web</small>
         </div>
-        <div class="flex-auto">
+        <div class="flex-auto border-b dark:border-gray-800">
           <div id="editor" class="w-full" />
         </div>
         <div class="py-1 px-1 border-t-1">
           <button
-            class="btn btn-neutral btn-xs"
+            class="btn btn-xs"
             type="button"
             on:click={async () => {
               await save_options(editor)
@@ -76,7 +76,7 @@
             Save Configuration
           </button>
           <button
-            class="btn btn-neutral btn-xs float-right"
+            class="btn btn-xs float-right"
             type="button"
             on:click={() => {
               reset_options(editor)
