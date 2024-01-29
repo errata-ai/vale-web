@@ -77,6 +77,7 @@
             class="btn btn-xs float-right"
             type="button"
             on:click={() => {
+              // NOTE: This doesn't trigger a save event, which makes sense.
               reset_options(editor)
               toast.push("Configuration reset to default.")
             }}>
