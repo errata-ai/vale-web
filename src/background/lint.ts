@@ -1,6 +1,6 @@
 import jsyaml from "js-yaml"
 import browser from "webextension-polyfill"
-import { defaultSettings, ExtSettings } from "./settings"
+import { defaultSettings, type ExtSettings } from "./settings"
 
 /*
 On startup, connect to Vale's native messaging host.
