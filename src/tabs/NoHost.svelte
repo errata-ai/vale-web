@@ -24,6 +24,8 @@
       </p>
       <div class="mockup-code">
         <pre data-prefix="$"><code>vale setup-host {browserName}</code></pre>
+        <pre data-prefix=">" class="text-info"><code>installing ...</code></pre>
+        <pre data-prefix=">" class="text-success"><code>Done!</code></pre>
       </div>
       <p class="py-3">
         If the problem persists, please open an issue on <a
