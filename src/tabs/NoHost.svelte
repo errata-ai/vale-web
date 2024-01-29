@@ -17,7 +17,7 @@
           class="link"
           href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_messaging"
           target="_blank">native messaging host</a
-        >. This usually happens when the host is not installed.
+        >. This usually occurs when the host has not been installed.
       </p>
       <p class="pb-3">
         If you haven't already, please install it from the command-line:
