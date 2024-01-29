@@ -3,29 +3,30 @@
   // https://github.com/dasDaniel/svelte-table/issues/68
   import SvelteTable from "svelte-table/src/SvelteTable.svelte"
   import browser from "webextension-polyfill"
-  import type { ValeAlert } from "./alert"
+  import { spanFormatter, type AlertRow, type ValeAlert } from "./alert"
 
-  import "./style.css"
+  import "../style.css"
 
-  let loading = true
-  let rows = []
+  let loading: boolean = true
+  let rows: AlertRow[] = []
 
   const columns = [
     {
       key: "rule",
       title: "Rule",
-      value: (v) => v.rule
-      //renderValue: (v) => {}, // add spans
+      value: (v: AlertRow) => v.rule,
+      renderValue: (v: AlertRow) => spanFormatter(v),
+      parseHTML: true
     },
     {
       key: "message",
       title: "Message",
-      value: (v) => v.message
+      value: (v: AlertRow) => v.message
     },
     {
       key: "location",
       title: "Location",
-      value: (v) => v.location
+      value: (v: AlertRow) => v.location
     }
   ]
 
@@ -40,7 +41,8 @@
           return {
             rule: alert.Check,
             message: alert.Message,
-            location: alert.Line + ":" + alert.Span[0] + "-" + alert.Span[1]
+            location: alert.Line + ":" + alert.Span[0] + "-" + alert.Span[1],
+            severity: alert.Severity
           }
         })
         loading = false
@@ -60,7 +62,16 @@
   </div>
 {:else if rows.length > 0}
   <div class="popup">
-    <SvelteTable {columns} {rows}></SvelteTable>
+    <div
+      class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+      <SvelteTable
+        {columns}
+        {rows}
+        classNameTable={"min-w-full divide-y divide-gray-300"}
+        classNameThead={"bg-gray-50"}
+        classNameTbody={"divide-y divide-gray-200 bg-white"}
+        classNameCell={"px-3 py-2 text-left text-sm text-gray-900"} />
+    </div>
   </div>
 {:else}
   <div class="popup">
