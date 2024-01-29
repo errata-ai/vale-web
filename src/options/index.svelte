@@ -94,7 +94,7 @@
         <a
           class="link"
           href="https://github.com/errata-ai/vale-native"
-          target="_blank">GitHub respository</a
+          target="_blank">GitHub repository</a
         >.
       </p>
       <p class="muted my-2 text-md">
