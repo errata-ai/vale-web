@@ -13,6 +13,7 @@ export type AlertRow = {
     message: string
     location: string
     severity: string
+    detail: string
 }
 
 export function spanFormatter(alert: AlertRow): string {
@@ -25,32 +26,27 @@ export function spanFormatter(alert: AlertRow): string {
     }
 }
 
-export function detailFormatter(extracted, row) {
+export function detailFormatter(extracted: string, row: ValeAlert): string {
     var html = []
     var body = extracted.split(/\r?\n/)
-    var textClass = "text-" + row.severity
+    var textClass = "text-" + row.Severity
 
-    for (const [key, value] of Object.entries(row)) {
-        if (key === "location") {
-            var info = value.split(":")
-            var line = info[0] - 1
-            var span = info[1].split("-")
-            var text = body[line]
+    var line = row.Line - 1
+    var span = row.Span
+    var text = body[line]
 
-            var match = text.slice(span[0] - 1, span[1])
-            html.push(
-                '<p class="p-3 mb-0 text-muted">' +
-                text.slice(0, span[0] - 1) +
-                '<span class="' +
-                textClass +
-                '"><i>' +
-                match +
-                "</i></span>" +
-                text.slice(span[1]) +
-                "</p>"
-            )
-        }
-    }
+    var match = text.slice(span[0] - 1, span[1])
+    html.push(
+        '<p class="p-3 mb-0 text-muted">' +
+        text.slice(0, span[0] - 1) +
+        '<span class="' +
+        textClass +
+        '"><i>' +
+        match +
+        "</i></span>" +
+        text.slice(span[1]) +
+        "</p>"
+    )
 
     return html.join("")
 }

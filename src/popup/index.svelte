@@ -3,7 +3,7 @@
   // https://github.com/dasDaniel/svelte-table/issues/68
   import SvelteTable from "svelte-table/src/SvelteTable.svelte"
   import browser from "webextension-polyfill"
-  import { spanFormatter, type AlertRow } from "./alert"
+  import { detailFormatter, spanFormatter, type AlertRow } from "./alert"
 
   import "../style.css"
 
@@ -44,7 +44,8 @@
             rule: val.Check,
             message: val.Message,
             location: val.Line + ":" + val.Span[0] + "-" + val.Span[1],
-            severity: val.Severity
+            severity: val.Severity,
+            detail: detailFormatter(req.source, val)
           })
         }
         loading = false
@@ -77,7 +78,10 @@
             classNameTable={"min-w-full divide-y divide-gray-300"}
             classNameThead={"bg-gray-50"}
             classNameTbody={"divide-y divide-gray-200 bg-white"}
-            classNameCell={"px-3 py-2 text-left text-sm text-gray-900"} />
+            classNameCell={"px-3 py-2 text-left text-sm text-gray-900"}>
+            <svelte:fragment slot="expanded" let:row
+              >{@html row.detail}</svelte:fragment>
+          </SvelteTable>
         </div>
       </div>
     </div>
