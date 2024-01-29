@@ -4,7 +4,7 @@
   const browserName = process.env.PLASMO_BROWSER
 </script>
 
-<div class="hero text-lg">
+<div class="hero text-base">
   <div class="hero-content">
     <div class="max-w-3xl">
       <div class="border dark:border-gray-800 mb-3 py-2 px-2 rounded">
