@@ -92,11 +92,11 @@
     <div class="relative flex-grow flex-1">
       <p class="muted">
         To ask questions, report bugs, or request features, please visit the
-        <a href="https://github.com/errata-ai/vale-native">GitHub respository</a
+        <a href="https://github.com/errata-ai/vale-native" class="underline">GitHub respository</a
         >.
       </p>
       <p class="muted my-2 text-md">
-        Created by <a href="https://github.com/jdkato"><b>@jdkato</b></a>.
+        Created by <a href="https://github.com/jdkato" class="underline"><b>@jdkato</b></a>.
       </p>
     </div>
   </div>
