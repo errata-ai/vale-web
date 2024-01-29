@@ -3,7 +3,7 @@
   // https://github.com/dasDaniel/svelte-table/issues/68
   import SvelteTable from "svelte-table/src/SvelteTable.svelte"
   import browser from "webextension-polyfill"
-  import { spanFormatter, type AlertRow, type ValeAlert } from "./alert"
+  import { spanFormatter, type AlertRow } from "./alert"
 
   import "../style.css"
 
@@ -37,14 +37,16 @@
 
     browser.runtime.onMessage.addListener(function (req) {
       if (req.action === "analysis_complete") {
-        rows = req.alerts.map((alert: ValeAlert) => {
-          return {
-            rule: alert.Check,
-            message: alert.Message,
-            location: alert.Line + ":" + alert.Span[0] + "-" + alert.Span[1],
-            severity: alert.Severity
-          }
-        })
+        rows = []
+        for (let [index, val] of req.alerts.entries()) {
+          rows.push({
+            id: index,
+            rule: val.Check,
+            message: val.Message,
+            location: val.Line + ":" + val.Span[0] + "-" + val.Span[1],
+            severity: val.Severity
+          })
+        }
         loading = false
       }
     })
@@ -62,15 +64,22 @@
   </div>
 {:else if rows.length > 0}
   <div class="popup">
-    <div
-      class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-      <SvelteTable
-        {columns}
-        {rows}
-        classNameTable={"min-w-full divide-y divide-gray-300"}
-        classNameThead={"bg-gray-50"}
-        classNameTbody={"divide-y divide-gray-200 bg-white"}
-        classNameCell={"px-3 py-2 text-left text-sm text-gray-900"} />
+    <div class="overflow-x-auto">
+      <div class="min-w-full sm:px-6 lg:px-8">
+        <div
+          class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+          <SvelteTable
+            {columns}
+            {rows}
+            showExpandIcon={true}
+            expandSingle={true}
+            rowKey="id"
+            classNameTable={"min-w-full divide-y divide-gray-300"}
+            classNameThead={"bg-gray-50"}
+            classNameTbody={"divide-y divide-gray-200 bg-white"}
+            classNameCell={"px-3 py-2 text-left text-sm text-gray-900"} />
+        </div>
+      </div>
     </div>
   </div>
 {:else}
