@@ -69,9 +69,7 @@
             type="button"
             on:click={async () => {
               await save_options(editor)
-              toast.push("Configuration saved sucessfully!", {
-                theme: {}
-              })
+              toast.push("Configuration saved sucessfully!")
             }}>
             Save Configuration
           </button>
@@ -80,6 +78,7 @@
             type="button"
             on:click={() => {
               reset_options(editor)
+              toast.push("Configuration reset to default.")
             }}>
             Reset to Default
           </button>
