@@ -58,7 +58,7 @@
         class="relative flex flex-col min-w-0 rounded break-words border dark:border-gray-800">
         <div class="py-2 px-2 mb-0 border-b dark:border-gray-800">
           <strong>Vale</strong>
-          <small>for the web</small>
+          <small><i>for the web</i></small>
         </div>
         <div class="flex-auto border-b dark:border-gray-800">
           <div id="editor" class="w-full" />

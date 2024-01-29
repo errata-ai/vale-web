@@ -5,7 +5,7 @@ import { defaultSettings, type ExtSettings } from "./settings"
 /*
 On startup, connect to Vale's native messaging host.
 */
-var port = browser.runtime.connectNative("sh.vale.native")
+const port = browser.runtime.connectNative("sh.vale.native")
 
 port.onMessage.addListener(function (msg) {
   const payload = JSON.parse(msg.output)
@@ -15,6 +15,11 @@ port.onMessage.addListener(function (msg) {
 })
 
 port.onDisconnect.addListener(function () {
+  if (browser.runtime.lastError) {
+    browser.tabs.create({
+      url: "./tabs/NoHost.html"
+    })
+  }
   console.log("Disconnected")
 })
 
