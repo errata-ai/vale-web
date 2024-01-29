@@ -55,18 +55,17 @@
   <div class="flex flex-wrap">
     <div class="relative flex-grow flex-1">
       <div
-        class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300">
-        <div
-          class="py-3 px-3 mb-0 bg-gray-200 border-b-1 border-gray-300 text-gray-900">
+        class="relative flex flex-col min-w-0 rounded break-words border dark:border-gray-800">
+        <div class="py-3 px-3 mb-0">
           <strong>Vale</strong>
           <small>for the web</small>
         </div>
         <div class="flex-auto">
           <div id="editor" class="w-full" />
         </div>
-        <div class="py-1 px-1 bg-gray-200 border-t-1 border-gray-300">
+        <div class="py-1 px-1 border-t-1">
           <button
-            class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded no-underline py-1 px-2 leading-tight text-xs bg-gray-600 text-white hover:bg-gray-700"
+            class="btn btn-neutral btn-xs"
             type="button"
             on:click={async () => {
               await save_options(editor)
@@ -77,7 +76,7 @@
             Save Configuration
           </button>
           <button
-            class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded no-underline py-1 px-2 leading-tight text-xs bg-gray-600 text-white hover:bg-gray-700 float-right"
+            class="btn btn-neutral btn-xs float-right"
             type="button"
             on:click={() => {
               reset_options(editor)
@@ -92,13 +91,17 @@
     <div class="relative flex-grow flex-1">
       <p class="muted">
         To ask questions, report bugs, or request features, please visit the
-        <a href="https://github.com/errata-ai/vale-native" class="underline"
-          >GitHub respository</a
+        <a
+          class="link"
+          href="https://github.com/errata-ai/vale-native"
+          target="_blank">GitHub respository</a
         >.
       </p>
       <p class="muted my-2 text-md">
-        Created by <a href="https://github.com/jdkato" class="underline"
-          ><b>@jdkato</b></a
+        Created by <a
+          class="link"
+          href="https://github.com/jdkato"
+          target="_blank"><b>@jdkato</b></a
         >.
       </p>
     </div>
