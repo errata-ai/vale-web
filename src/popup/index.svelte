@@ -3,7 +3,8 @@
   // https://github.com/dasDaniel/svelte-table/issues/68
   import SvelteTable from "svelte-table/src/SvelteTable.svelte"
   import browser from "webextension-polyfill"
-  import { detailFormatter, spanFormatter, type AlertRow } from "./alert"
+
+  import { type AlertRow, detailFormatter, spanFormatter } from "./alert"
 
   import "../style.css"
 
@@ -66,24 +67,18 @@
 {:else if rows.length > 0}
   <div class="popup">
     <div class="overflow-x-auto">
-      <div class="min-w-full sm:px-6 lg:px-8">
-        <div
-          class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-          <SvelteTable
-            {columns}
-            {rows}
-            showExpandIcon={true}
-            expandSingle={true}
-            rowKey="id"
-            classNameTable={"min-w-full divide-y divide-gray-300"}
-            classNameThead={"bg-gray-50"}
-            classNameTbody={"divide-y divide-gray-200 bg-white"}
-            classNameCell={"px-3 py-2 text-left text-sm text-gray-900"}>
-            <svelte:fragment slot="expanded" let:row
-              >{@html row.detail}</svelte:fragment>
-          </SvelteTable>
-        </div>
-      </div>
+      <SvelteTable
+        {columns}
+        {rows}
+        showExpandIcon={true}
+        expandSingle={true}
+        rowKey="id"
+        classNameTable={"table"}
+        iconExpand={"➖"}
+        iconExpanded={"➕"}>
+        <svelte:fragment slot="expanded" let:row
+          >{@html row.detail}</svelte:fragment>
+      </SvelteTable>
     </div>
   </div>
 {:else}
