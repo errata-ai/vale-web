@@ -16,9 +16,15 @@ port.onMessage.addListener(function (msg) {
 
 port.onDisconnect.addListener(function () {
   if (browser.runtime.lastError) {
-    browser.tabs.create({
-      url: "./tabs/NoHost.html"
-    })
+    if (browser.runtime.lastError.message === "Specified native messaging host not found.") {
+      browser.tabs.create({
+        url: "./tabs/NoHost.html"
+      })
+    } else {
+      browser.tabs.create({
+        url: "./tabs/ErrorMsg.html?msg=" + browser.runtime.lastError.message
+      })
+    }
   }
   console.log("Disconnected")
 })
