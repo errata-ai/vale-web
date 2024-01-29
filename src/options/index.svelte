@@ -57,7 +57,7 @@
       <div
         class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300">
         <div
-          class="py-3 px-6 mb-0 bg-gray-200 border-b-1 border-gray-300 text-gray-900">
+          class="py-3 px-3 mb-0 bg-gray-200 border-b-1 border-gray-300 text-gray-900">
           <strong>Vale</strong>
           <small>for the web</small>
         </div>
@@ -92,11 +92,14 @@
     <div class="relative flex-grow flex-1">
       <p class="muted">
         To ask questions, report bugs, or request features, please visit the
-        <a href="https://github.com/errata-ai/vale-native" class="underline">GitHub respository</a
+        <a href="https://github.com/errata-ai/vale-native" class="underline"
+          >GitHub respository</a
         >.
       </p>
       <p class="muted my-2 text-md">
-        Created by <a href="https://github.com/jdkato" class="underline"><b>@jdkato</b></a>.
+        Created by <a href="https://github.com/jdkato" class="underline"
+          ><b>@jdkato</b></a
+        >.
       </p>
     </div>
   </div>
