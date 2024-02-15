@@ -25,7 +25,6 @@
     "cm6-theme-basic-dark": "^0.2.0",
     "cm6-theme-basic-light": "^0.2.0",
     "codemirror": "^6.0.1",
-    "daisyui": "^4.6.0",
     "js-yaml": "^4.1.0",
     "webextension-polyfill": "^0.10.0",
     "svelte-table": "^0.6.1"
@@ -37,6 +36,7 @@
     "@types/webextension-polyfill": "^0.10.7",
     "postcss": "^8.4.33",
     "prettier": "2.7.1",
+    "daisyui": "^4.6.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.0.4"
   },
