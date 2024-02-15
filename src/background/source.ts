@@ -5,21 +5,6 @@ export default function sourceFinder(): {
 } {
   var target = document.activeElement
 
-  function toText(element: HTMLElement): string {
-    let text = element.innerText || ""
-    let lines = []
-
-    let buffer = text.match(/[^\r\n]+/g) || []
-    buffer.forEach(function (line) {
-      if (line === "" || !isNaN(Number(line))) {
-        return
-      }
-      lines.push(line)
-    })
-
-    return lines.join("\n")
-  }
-
   function isSupported(el: HTMLElement): boolean {
     if (el) {
       if (el.tagName.toLowerCase() === "textarea") {
@@ -32,11 +17,12 @@ export default function sourceFinder(): {
   }
 
   if (target instanceof HTMLElement && isSupported(target)) {
-    var text = target.innerText || "";
+    const targetObj = <HTMLInputElement>target;
+
+    var text = targetObj.innerText || targetObj.value || "";
     var html = "";
 
     if (text === "" || text === undefined) {
-      text = toText(target);
       html = target.outerHTML;
     }
 
