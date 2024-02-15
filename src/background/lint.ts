@@ -54,6 +54,7 @@ function postVale(request: any, settings: ExtSettings, target: string) {
     command: "lint",
     text: request.text,
     format: ext,
+    url: target,
   })
 }
 
