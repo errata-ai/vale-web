@@ -41,9 +41,6 @@
     "webextension-polyfill": "^0.10.0"
   },
   "manifest": {
-    "host_permissions": [
-      "https://*/*"
-    ],
     "permissions": [
       "activeTab",
       "storage",
