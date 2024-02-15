@@ -23,7 +23,7 @@
         If you haven't already, please install it from the command-line:
       </p>
       <div class="mockup-code">
-        <pre data-prefix="$"><code>vale setup-host {browserName}</code></pre>
+        <pre data-prefix="$"><code>vale host-install {browserName}</code></pre>
         <pre data-prefix=">" class="text-info"><code>installing ...</code></pre>
         <pre data-prefix=">" class="text-success"><code>Done!</code></pre>
       </div>
