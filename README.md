@@ -1,4 +1,10 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+# Vale *for the web*
+
+Vale's chrome extension allows you to use your local Vale configurations on any website's `textarea` or `[contenteditable]` input fields.
+
+Like the Vale CLI, the extension focuses on providing a high level of privacy and security: it only uses the lowest level of permissions (`activeTab`) and does all of its content processing locally.
+
+> This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
 
 ## Getting Started
 
