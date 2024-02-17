@@ -23,13 +23,7 @@
     "codemirror": "^6.0.1",
     "js-yaml": "^4.1.0",
     "webextension-polyfill": "^0.10.0",
-    "svelte-table": "^0.6.1"
-  },
-  "devDependencies": {
-    "@types/chrome": "0.0.198",
-    "@types/js-yaml": "^4.0.9",
-    "@types/node": "18.11.2",
-    "@types/webextension-polyfill": "^0.10.7",
+    "svelte-table": "^0.6.1",
     "@plasmohq/prettier-plugin-sort-imports": "3.5.4",
     "postcss": "^8.4.33",
     "autoprefixer": "^10.4.17",
@@ -39,6 +33,12 @@
     "typescript": "^5.0.4",
     "svelte": "^3.59.1",
     "svelte-preprocess": "^5.0.3"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.0.198",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "18.11.2",
+    "@types/webextension-polyfill": "^0.10.7"
   },
   "manifest": {
     "permissions": [
