@@ -8,9 +8,18 @@ On startup, connect to Vale's native messaging host.
 const port = browser.runtime.connectNative("sh.vale.native")
 
 port.onMessage.addListener(function (msg) {
+  console.log("Received:", msg.command)
+
   const payload = JSON.parse(msg.output)
   if (msg.command === "lint") {
     showResults(msg.input, payload)
+  } else if (msg.command === "error") {
+    console.error("Error:", payload)
+    browser.runtime.sendMessage({
+      action: "analysis_failed",
+      alerts: [],
+      source: payload.Text,
+    });
   }
 })
 
@@ -36,7 +45,6 @@ function showResults(text: string, payload: any) {
       action: "analysis_complete",
       alerts: [],
       source: text,
-      status: '<span class="p-2">✅</span>No alerts found!',
     });
   } else {
     browser.runtime.sendMessage({
