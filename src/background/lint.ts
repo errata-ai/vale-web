@@ -8,13 +8,10 @@ On startup, connect to Vale's native messaging host.
 const port = browser.runtime.connectNative("sh.vale.native")
 
 port.onMessage.addListener(function (msg) {
-  console.log("Received:", msg.command)
-
   const payload = JSON.parse(msg.output)
   if (msg.command === "lint") {
     showResults(msg.input, payload)
   } else if (msg.command === "error") {
-    console.error("Error:", payload)
     browser.runtime.sendMessage({
       action: "analysis_failed",
       alerts: [],
@@ -57,7 +54,6 @@ function showResults(text: string, payload: any) {
 
 function postVale(request: any, settings: ExtSettings, target: string) {
   const ext = settings.sites[target] || ".txt"
-  console.log("Linting text as", ext, request)
   port.postMessage({
     command: "lint",
     text: request.text,
@@ -75,10 +71,8 @@ function doLint(target, resp) {
   browser.storage.local.get("config").then(function (items) {
     var settings = defaultSettings
     if (items.config) {
-      console.log("Loading saved config ...")
       settings = jsyaml.load(items.config) as ExtSettings
     }
-    console.log("Loaded settings", resp)
     if (resp.markup) {
       postHTML(resp, settings)
     } else {
